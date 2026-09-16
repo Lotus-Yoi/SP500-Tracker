@@ -31,6 +31,14 @@
 
 ## 更新日志
 
+### V1.2
+尝试让项目进行自动化运行，选择了GitHub Actions作为自动化运行环境。
+
+- 在网络请求连续失败时加入进程退出码，使 GitHub Actions 能正确识别程序运行失败
+- 添加了`requirements.txt`，记录项目所需要的python第三方依赖
+- 添加了`.github/workflows/update.yml`，用于配置 GitHub Actions 自动运行流程
+- 为了适配 Ubuntu 运行环境，暂时移除绘图中的中文字体设置，并将图表文字改为英文
+
 ### V1.1 
 `daily_return`这一项的第一行因为没有前一天的数据，本来就是`NaN`。
 但是旧代码直接使用了`dropna()`导致了程序每运行一次都会删掉一行历史数据...

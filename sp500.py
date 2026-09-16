@@ -16,7 +16,7 @@ def fetch_data(url):
             print(f"第{i+1}次获取失败")
     if response is None:
         print("连续三次请求失败，程序结束")
-        raise SystemExit
+        raise SystemExit(1)
     return response
 
 def clean_data(df):
@@ -46,23 +46,21 @@ def merge_data(old_data,new_data):
     return combined_df
 
 def paint(df):
-    plt.rcParams["font.sans-serif"] = ["Microsoft YaHei"]
-    plt.rcParams["axes.unicode_minus"] = False
-
     plt.subplot(2,1,1)
     plt.plot(df.index,df["SP500"])
    
-    plt.ylabel("价格")
-    plt.title("S&P500价格变化趋势")
+    plt.ylabel("Price")
+    plt.title("S&P 500 Price Trend")
 
     plt.subplot(2,1,2)
     plt.plot(df.index,df["daily_return"])
-    plt.ylabel("涨幅")
-    plt.title("S&P500上涨趋势")
+
+    plt.ylabel("Daily Return(%)")
+    plt.title("S&P 500 Daily Return")
 
     plt.tight_layout()
     plt.savefig("SP500.png")
-    plt.show()
+    plt.close()
 
 def main():
     url='https://fred.stlouisfed.org/graph/fredgraph.csv?id=SP500'
