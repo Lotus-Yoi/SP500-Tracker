@@ -42,7 +42,6 @@ def merge_data(old_data,new_data):
     combined_df=combined_df[~combined_df.index.duplicated(keep='last')]
     combined_df = combined_df.sort_index()
     # 永远不要假设去重、拼接后的数据顺序还是对的
-    combined_df['daily_return']=combined_df['SP500'].pct_change()*100
     return combined_df
 
 def paint(df):
@@ -82,6 +81,7 @@ def main():
         #     f.write(response.text)
         print("未检测到数据，正在创建原始数据")
         combined_df=new_df
+    combined_df['daily_return']=combined_df['SP500'].pct_change()*100
     combined_df.to_csv("sp500.csv")
 # to_csv会创建csv文件
     paint(combined_df)
