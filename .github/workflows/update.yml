@@ -2,6 +2,11 @@ name: Update SP500 Data
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 23 * * *"
+
+permissions:
+  contents: write
 
 jobs:
   sp500:
@@ -21,3 +26,17 @@ jobs:
       
       - name: Run SP500 tracker
         run: python sp500.py
+      
+      - name: Update SP500.png
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add SP500.png
+
+          if git diff --cached --quiet
+          then
+            echo "No changes to commit"
+          else
+          git commit -m "update SP500.png"
+          git push 
+          fi
