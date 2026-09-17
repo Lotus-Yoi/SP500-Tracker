@@ -3,7 +3,7 @@ name: Update SP500 Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 23 * * *"
+    - cron: "30 1 * * *"
 
 permissions:
   contents: write
