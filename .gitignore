@@ -1,3 +1,11 @@
 .vscode/
 __pycache__/
 sp500.csv
+work2.py
+test.py
+print.py
+apitest.py
+datatest.py
+.env
+report.txt
+SP500.png
